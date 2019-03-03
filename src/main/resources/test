@@ -1,0 +1,16 @@
+adddiscordbot amy <discord bot token>
+addminecraftbot amy &4Amy: &r
+
+setchannel <discord channel>
+
+setdefaultdelay 1000
+
+amy: Hello how are you?
+
+wait 5000
+
+amy: Is anyone here?
+
+wait 5000
+
+amy: I guess it's just me... Shutting down.

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        var redirect = function() {
+            document.location.href="debug.html";
+        }
+
+    </script>
+</head>
+<body>
+
+<h1>Login</h1>
+<form action="/login" method="post" onsubmit="redirect()">
+    <p>
+        Password
+        <input type="password" name="password">
+    </p>
+</form>
+
+</body>
+</html>

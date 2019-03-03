@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.amitynation.botstudio</groupId>
+    <artifactId>botstudio</artifactId>
+    <version>0.0.2</version>
+    <name>BotStudio</name>
+
+    <properties>
+        <!-- Used in plugin.yml -->
+        <mainClass>org.amitynation.botstudio.BotStudio</mainClass>
+        <description>A plugin that controls bots and chat for both Discord and Minecraft</description>
+
+        <!-- Versions of dependencies for easy access -->
+        <spigot.version>1.12.2-R0.1-SNAPSHOT</spigot.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>jcenter</id>
+            <name>jcenter-bintray</name>
+            <url>http://jcenter.bintray.com</url>
+        </repository>
+
+        <!-- Used for jda-utilities -->
+        <repository>
+            <id>central</id>
+            <name>bintray</name>
+            <url>http://jcenter.bintray.com</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!-- Spigot -->
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>${spigot.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.dv8tion</groupId>
+            <artifactId>JDA</artifactId>
+            <version>3.8.1_439</version>
+        </dependency>
+
+        <!-- Webserver -->
+        <dependency>
+            <groupId>org.nanohttpd</groupId>
+            <artifactId>nanohttpd</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+
+        <!-- Local dependency WordFilter API -->
+        <dependency>
+            <groupId>org.amitynation.wordfilter</groupId>
+            <artifactId>wordfilter</artifactId>
+            <version>1.1.3</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <!-- Tells maven to use the properties in this pom in plugin.yml and config.yml -->
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>plugin.yml</include>
+                    <include>config.yml</include>
+                    <include>debug.html</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <!-- Tells maven to compile for Java 8 -->
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <!-- Used to change the final jar name to BotStudio-VERSION.jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <finalName>${project.name}-${project.version}</finalName>
+                </configuration>
+            </plugin>
+
+            <!-- Maven shade plugin to include the discord API in the plugin jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <minimizeJar>true</minimizeJar>
+                            <artifactSet>
+                                <includes>
+                                    <!--JDA Dependencies-->
+                                    <include>net.dv8tion:JDA</include>
+                                    <include>com.neovisionaries:nv-websocket-client</include>
+                                    <include>com.squareup.okhttp3:okhttp</include>
+                                    <include>com.squareup.okio:okio</include>
+                                    <include>org.apache.commons:commons-collections4</include>
+                                    <include>org.json:json</include>
+                                    <!--<include>net.sf.trove4j:trove4j</include>-->
+                                    <!--<include>org.slf4j:slf4j-api</include>-->
+                                    <!--END JDA Dependencies-->
+
+                                    <!-- Webserver -->
+                                    <include>org.nanohttpd:nanohttpd</include>
+                                </includes>
+                            </artifactSet>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

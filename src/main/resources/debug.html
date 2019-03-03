@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+	setInterval(function() {
+		$('.obfuscated').text(randomizer($('.obfuscated').text()));
+	}, 100);
+
+	function randomizer(rawr) {
+		var length = rawr.length;
+		var text = '';
+		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+		for( var i=0; i < length; i++ )
+			text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+		return text;
+	}
+
+    </script>
+    <style>
+	body { background-color: rgb(200, 200, 200)}
+	.c-1 { color: #000 }
+	.c-2 { color: #00A }
+	.c-3 { color: #0A0 }
+	.c-4 { color: #0AA }
+	.c-5 { color: #A00 }
+	.c-6 { color: #A0A }
+	.c-7 { color: #FA0 }
+	.c-8 { color: #AAA }
+	.c-9 { color: #555 }
+	.c-10 { color: #55F }
+	.c-11 { color: #5F5 }
+	.c-12 { color: #5FF }
+	.c-13 { color: #F55 }
+	.c-14 { color: #F5F }
+	.c-15 { color: #FF5 }
+	.c-16 { color: #FFF }
+
+    </style>
+</head>
+
+<body>
+$text
+</body>
+</html>

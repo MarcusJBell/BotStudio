@@ -1,0 +1,30 @@
+debugChannel: -1
+
+# Requires at least one bot with 'main' equal to true.
+bots:
+  amy:
+    name: "Amy"
+    token: ""
+    main: true # ONLY ONE MAIN BOT ALLOWED!! Main bot is the bot that needs to always be online and handle commands.
+    # status: "online" # Possible: Online, Idle, Do_not_disturb, Invisible
+
+# Sets the prefixes the bot will use for commands. Leave commented out to use '!'
+# prefixes:
+#  - amy!
+#  - yuuki!
+
+# Used to make commands use a bot with given name. Note the command needs to be the exact name and the bot needs to be registered above.
+# delegateCommands:
+#  pm: "yuuki"
+
+chatFilter:
+  bot: "Amy"
+  randomResponses:
+  - "Beep boop much like a human I am not perfect. If you feel this was a mistake please contact a staff member"
+  wordBasedResponses:
+    fuck:
+    - "What the frick. Don't say that!!"
+    ass:
+    - "I wish I could get some but alas, I'm only a robot."
+  ignoredChannels:
+    - 396527208778301450

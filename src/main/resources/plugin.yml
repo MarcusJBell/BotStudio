@@ -1,0 +1,12 @@
+## Change variables in the 'pom.xml' file
+main: ${mainClass}
+name: ${project.name}
+version: ${project.version}
+description: ${description}
+##
+
+softdepend: [WordFilter]
+
+commands:
+  botstudioshutdown:
+    description: Used to shutdown the plugin for easy hotswap
